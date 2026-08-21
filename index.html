@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0052cc">
     <title>Horizon Defense Project | Juvenile-Focused Public Interest Defense</title>
+    <meta name="description" content="Public interest criminal defense practice with a primary interest in juvenile capital cases and indigent adult defense across Metro Detroit.">
+    <link rel="canonical" href="https://horizondefenseproject.com/">
+
+    <!-- The mark. SVG first so it stays sharp and follows the reader's theme;
+         the PNG is the fallback for browsers that ignore an SVG icon. -->
+    <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Horizon Defense Project">
+    <meta property="og:title" content="Horizon Defense Project">
+    <meta property="og:description" content="Public interest criminal defense practice with a primary interest in juvenile capital cases and indigent adult defense across Metro Detroit.">
+    <meta property="og:url" content="https://horizondefenseproject.com/">
+    <meta property="og:image" content="https://horizondefenseproject.com/assets/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Horizon Defense Project — Detroit">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Horizon Defense Project">
+    <meta name="twitter:description" content="Public interest criminal defense practice with a primary interest in juvenile capital cases and indigent adult defense across Metro Detroit.">
+    <meta name="twitter:image" content="https://horizondefenseproject.com/assets/og.png">
+
+    <!-- The wordmark's face. Charter and Georgia are the approved fallbacks and
+         are near-universal, so the lockup still reads correctly if the webfont
+         never arrives -- the same never-invisible rule the gradient follows. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600&display=swap">
     <style>
         /* Palette lifted from the CRM (templates/base.html). Same tokens, same
            names, so the two surfaces cannot drift apart by accident. */
@@ -17,11 +46,17 @@
             --panel-veil: rgba(255, 255, 255, 0.78);
             --inset-bg: rgba(244, 245, 247, 0.72);
             --shadow: 0 18px 38px rgba(23, 43, 77, 0.13);
-            /* The wordmark runs the sunrise, but STOPS SHORT of --dawn-3 on
-               light. The CRM's header is 15px; this is 2.2rem on near-white,
-               where #f6c76a lands about 1.6:1 and the last word fades out.
-               #d97706 is 3.75:1 -- AA large -- and still reads as sunrise. */
-            --wordmark: linear-gradient(95deg, var(--dawn-1), #cf5f0d 45%, #d97706);
+            /* The logo's own two colours. --brand-ink is the pleading blue
+               (#1f497d, `dark2` in the Office theme the templates use), so the
+               wordmark on screen and the running header on a filed document
+               are the same navy. --brand-place is the DETROIT line: 5.26:1 on
+               --bg, where the old fade-to-gold h1 bottomed out near 1.6:1. */
+            --brand-ink: #1f497d;
+            --brand-place: #b3400f;
+            --mark-upright: #1f497d;
+            --mark-sun-0: #e07b12; --mark-sun-1: #ea8c1b; --mark-sun-2: #f6c76a;
+            --mark-bar-0: #c2410c; --mark-bar-1: #ea8c1b;
+            --mark-bar-2: #f6c76a; --mark-bar-3: #dfe1e6;
         }
         @media (prefers-color-scheme: dark) {
             :root {
@@ -32,9 +67,15 @@
                 --panel-veil: rgba(29, 33, 39, 0.78);
                 --inset-bg: rgba(20, 23, 28, 0.6);
                 --shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-                /* On dark every stop is high-contrast, so the CRM's own
-                   three-stop ramp is kept exactly. */
-                --wordmark: linear-gradient(95deg, var(--dawn-1), var(--dawn-2) 70%, var(--dawn-3));
+                /* On dark the navy would disappear, so the letterforms take
+                   the page's own ink and the mark's uprights follow them --
+                   exactly as the approved dark lockup does. */
+                --brand-ink: #e6e9ef;
+                --brand-place: #fbaa3c;
+                --mark-upright: #e6e9ef;
+                --mark-sun-0: #fbaa3c; --mark-sun-1: #fbaa3c; --mark-sun-2: #ffd899;
+                --mark-bar-0: #f97316; --mark-bar-1: #fbaa3c;
+                --mark-bar-2: #ffd899; --mark-bar-3: #2d323b;
             }
         }
 
@@ -129,22 +170,109 @@
             100% { opacity: 0.4; }
         }
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
-            /* The wordmark picks up first light, as it does on the board.
-               Falls back to plain dawn ink wherever background-clip:text is
-               unsupported, so the name is never invisible. */
-            color: var(--dawn-1);
+        /* THE LOCKUP.
+           Every measurement below is the approved artwork's own, expressed as
+           a fraction of the "HORIZON" size (96px in the source) and written in
+           em. So the whole lockup scales from the single font-size on h1 and
+           the proportions cannot drift apart at a breakpoint -- which is the
+           one way a hand-rebuilt logo goes wrong.
+
+           The H is NOT a letter here: the mark stands in for it and the text
+           reads "orizon". Sighted readers see HORIZON; the accessible name is
+           carried by the visually-hidden span, so a screen reader never says
+           "orizon" and search engines still index the real title. */
+        /* h1 AND its spans. The `*` rule at the top of this stylesheet sets a
+           font-family on every element, and a rule that matches an element
+           directly beats one it would otherwise inherit -- so styling h1 alone
+           leaves the wordmark's own spans on the sans stack. Caught by
+           rendering the page and looking at it, not by reading the CSS. */
+        /* ONLY the face is shared with the spans. Everything else below stays
+           on h1, or the flex layout and the clamp() size would be re-applied
+           to each child and the lockup's 0.615/0.344 scale steps would all
+           collapse to full size. */
+        h1, h1 span {
+            /* "Bitstream Charter" comes BEFORE the bare `Charter`, and the
+               order is load-bearing. On Linux, fontconfig answers `Charter`
+               with a best-match SUBSTITUTE rather than failing -- measured
+               here, `fc-match Charter` returns DejaVu Sans -- so the browser
+               stops at that entry and every serif after it is unreachable.
+               The wordmark then silently renders in a sans for any reader
+               whose webfont request failed. Naming the real Linux family
+               first fixes it, and costs nothing on macOS, where "Bitstream
+               Charter" does not exist and the bare `Charter` is picked up on
+               the next line as before. */
+            font-family: "Source Serif 4", "Bitstream Charter", Charter,
+                         Georgia, "Times New Roman", serif;
         }
-        @supports (background-clip: text) or (-webkit-background-clip: text) {
-            h1 {
-                background: var(--wordmark);
-                -webkit-background-clip: text; background-clip: text;
-                color: transparent;
-            }
+
+        h1 {
+            font-weight: 600;
+            font-size: clamp(1.75rem, 7.6vw, 3.05rem);
+            line-height: 1;
+            letter-spacing: normal;
+            margin-bottom: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.292em;                       /* 28/96 */
+            text-transform: uppercase;
+            color: var(--brand-ink);
+        }
+
+        .sr-only {
+            position: absolute; width: 1px; height: 1px;
+            padding: 0; margin: -1px; overflow: hidden;
+            clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+        }
+
+        .lockup-name {
+            display: flex; align-items: baseline;
+            letter-spacing: 0.14em;
+            /* Tracking adds a space after the final N too. Left uncorrected it
+               pushes a centred line half a letter-space off centre. */
+            margin-right: -0.14em;
+        }
+
+        .lockup-mark {
+            display: block;
+            width: 0.656em;                     /* 63/96 */
+            height: 0.677em;                    /* 65/96 */
+            margin-right: 0.156em;              /* 15/96 */
+            flex: none;
+            /* NO align-self here. The viewBox is cropped to 0 13 38 39, so the
+               svg's bottom edge lands exactly on the uprights' feet -- which
+               means baseline alignment seats the mark on the text baseline for
+               free. Centring it instead floats the H off the line. */
+        }
+
+        .lockup-sub {
+            font-size: 0.615em;                 /* 59/96 */
+            letter-spacing: 0.2em;
+            margin-right: -0.2em;
+        }
+
+        .lockup-place {
+            display: flex; align-items: center;
+            font-size: 0.344em;                 /* 33/96 */
+            /* These two are measured against THIS row's 33px, not the 96px the
+               rest of the lockup is scaled from -- em compounds, and using the
+               /96 fractions here shrank the rule's gap to a third of the
+               drawing. */
+            gap: 0.667em;                       /* 22/33 */
+            margin-top: 0.121em;                /* 4/33 */
+            letter-spacing: 0.34em;
+            color: var(--brand-place);
+            /* The rule and the word are one unit; the tracking correction is
+               applied to the whole row so the pair stays centred together. */
+            margin-right: -0.34em;
+        }
+
+        .lockup-rule {
+            width: 2.24em;                      /* 74/33 of the DETROIT size */
+            height: 0.182em;                    /* 6/33 */
+            border-radius: 0.091em;
+            background: linear-gradient(90deg, var(--dawn-1), var(--dawn-2));
+            flex: none;
         }
 
         .subtitle {
@@ -188,7 +316,9 @@
         /* One breakpoint, the CRM's own 720px. */
         @media (max-width: 720px) {
             .container { padding: 1.75rem 1.25rem; }
-            h1 { font-size: 1.7rem; }
+            /* h1 is deliberately NOT overridden here -- its clamp() already
+               tracks the viewport, and a fixed size at this breakpoint would
+               fight it and break the lockup's proportions. */
             .subtitle { font-size: 1rem; }
             .details-box { font-size: 0.8rem; }
         }
@@ -208,7 +338,35 @@
             System Initialization
         </div>
 
-        <h1>HORIZON DEFENSE PROJECT</h1>
+        <h1>
+            <span class="sr-only">Horizon Defense Project — Detroit</span>
+            <span class="lockup-name" aria-hidden="true">
+                <svg class="lockup-mark" viewBox="0 13 38 39" focusable="false">
+                    <defs>
+                        <clipPath id="hzn"><rect x="0" y="0" width="64" height="37"/></clipPath>
+                        <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%"   stop-color="var(--mark-sun-0)" stop-opacity=".95"/>
+                            <stop offset="52%"  stop-color="var(--mark-sun-1)" stop-opacity=".66"/>
+                            <stop offset="100%" stop-color="var(--mark-sun-2)" stop-opacity=".14"/>
+                        </radialGradient>
+                        <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%"  stop-color="var(--mark-bar-0)"/>
+                            <stop offset="42%" stop-color="var(--mark-bar-1)"/>
+                            <stop offset="72%" stop-color="var(--mark-bar-2)"/>
+                            <stop offset="92%" stop-color="var(--mark-bar-3)"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="26" cy="45" r="27" fill="url(#sun)" clip-path="url(#hzn)"/>
+                    <rect x="4"  y="14" width="8"  height="38" rx="2" fill="var(--mark-upright)"/>
+                    <rect x="26" y="14" width="8"  height="38" rx="2" fill="var(--mark-upright)"/>
+                    <rect x="2"  y="29" width="34" height="8"  rx="4" fill="url(#bar)"/>
+                </svg><span>orizon</span>
+            </span>
+            <span class="lockup-sub" aria-hidden="true">Defense Project</span>
+            <span class="lockup-place" aria-hidden="true">
+                <span class="lockup-rule"></span>Detroit
+            </span>
+        </h1>
         <div class="subtitle">Juvenile-Focused Public Interest Defense</div>
 
         <p>
