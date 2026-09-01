@@ -1,484 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0052cc">
-    <title>Horizon Defense Project | Juvenile-Focused Public Interest Defense</title>
-    <meta name="description" content="Public interest criminal defense practice with a primary interest in juvenile capital cases and indigent adult defense across Metro Detroit.">
-    <link rel="canonical" href="https://horizondefenseproject.com/">
-
-    <!-- The mark. SVG first so it stays sharp and follows the reader's theme;
-         the PNG is the fallback for browsers that ignore an SVG icon. -->
-    <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
-    <link rel="alternate icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
-    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Horizon Defense Project">
-    <meta property="og:title" content="Horizon Defense Project">
-    <meta property="og:description" content="Public interest criminal defense practice with a primary interest in juvenile capital cases and indigent adult defense across Metro Detroit.">
-    <meta property="og:url" content="https://horizondefenseproject.com/">
-    <meta property="og:image" content="https://horizondefenseproject.com/assets/og.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Horizon Defense Project — Detroit">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Horizon Defense Project">
-    <meta name="twitter:description" content="Public interest criminal defense practice with a primary interest in juvenile capital cases and indigent adult defense across Metro Detroit.">
-    <meta name="twitter:image" content="https://horizondefenseproject.com/assets/og.png">
-
-    <!-- The wordmark's face. Charter and Georgia are the approved fallbacks and
-         are near-universal, so the lockup still reads correctly if the webfont
-         never arrives -- the same never-invisible rule the gradient follows. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600&display=swap">
-    <style>
-        /* Palette lifted from the CRM (templates/base.html). Same tokens, same
-           names, so the two surfaces cannot drift apart by accident. */
-        :root {
-            --bg: #f4f5f7; --panel: #fff; --ink: #172b4d; --muted: #5e6c84;
-            --line: #dfe1e6; --accent: #0052cc;
-            /* Sunrise. CHROME ONLY -- as in the CRM, warm colour is confined to
-               the frame and the wordmark so it can never read as a signal. */
-            --dawn-1: #c2410c; --dawn-2: #ea8c1b; --dawn-3: #f6c76a;
-            --panel-veil: rgba(255, 255, 255, 0.78);
-            --inset-bg: rgba(244, 245, 247, 0.72);
-            --shadow: 0 18px 38px rgba(23, 43, 77, 0.13);
-            /* The logo's own two colours. --brand-ink is the pleading blue
-               (#1f497d, `dark2` in the Office theme the templates use), so the
-               wordmark on screen and the running header on a filed document
-               are the same navy. --brand-place is the DETROIT line: 5.26:1 on
-               --bg, where the old fade-to-gold h1 bottomed out near 1.6:1. */
-            --brand-ink: #1f497d;
-            --brand-place: #b3400f;
-            --mark-upright: #1f497d;
-            --mark-sun-0: #e07b12; --mark-sun-1: #ea8c1b; --mark-sun-2: #f6c76a;
-            --mark-bar-0: #c2410c; --mark-bar-1: #ea8c1b;
-            --mark-bar-2: #f6c76a; --mark-bar-3: #dfe1e6;
-        }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #14171c; --panel: #1d2127; --ink: #e6e9ef; --muted: #99a2b3;
-                --line: #2d323b; --accent: #6ea8ff;
-                /* Lifted on dark, or the gradient reads as a smudge. */
-                --dawn-1: #f97316; --dawn-2: #fbaa3c; --dawn-3: #ffd899;
-                --panel-veil: rgba(29, 33, 39, 0.78);
-                --inset-bg: rgba(20, 23, 28, 0.6);
-                --shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-                /* On dark the navy would disappear, so the letterforms take
-                   the page's own ink and the mark's uprights follow them --
-                   exactly as the approved dark lockup does. */
-                --brand-ink: #e6e9ef;
-                --brand-place: #fbaa3c;
-                --mark-upright: #e6e9ef;
-                --mark-sun-0: #fbaa3c; --mark-sun-1: #fbaa3c; --mark-sun-2: #ffd899;
-                --mark-bar-0: #f97316; --mark-bar-1: #fbaa3c;
-                --mark-bar-2: #ffd899; --mark-bar-3: #2d323b;
-            }
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--ink);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Subtle Background Particle Net */
-        #canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 650px;
-            width: 90%;
-            padding: 2.5rem;
-            background: var(--panel-veil);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            overflow: hidden;
-        }
-
-        /* The horizon: the same sunrise line the CRM draws where its header
-           meets the boards. Decorative, and deliberately nothing else. */
-        .container::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg,
-                var(--dawn-1) 0%, var(--dawn-2) 22%, var(--dawn-3) 45%,
-                var(--line) 78%, var(--line) 100%);
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            /* Plain declarations first: where color-mix is unsupported the
-               badge still draws a real border rather than vanishing. */
-            background: var(--inset-bg);
-            border: 1px solid var(--line);
-            background: color-mix(in srgb, var(--accent) 10%, transparent);
-            border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
-            color: var(--accent);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-        }
-
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.4; }
-            50% { opacity: 1; }
-            100% { opacity: 0.4; }
-        }
-
-        /* THE LOCKUP.
-           Every measurement below is the approved artwork's own, expressed as
-           a fraction of the "HORIZON" size (96px in the source) and written in
-           em. So the whole lockup scales from the single font-size on h1 and
-           the proportions cannot drift apart at a breakpoint -- which is the
-           one way a hand-rebuilt logo goes wrong.
-
-           The H is NOT a letter here: the mark stands in for it and the text
-           reads "orizon". Sighted readers see HORIZON; the accessible name is
-           carried by the visually-hidden span, so a screen reader never says
-           "orizon" and search engines still index the real title. */
-        /* h1 AND its spans. The `*` rule at the top of this stylesheet sets a
-           font-family on every element, and a rule that matches an element
-           directly beats one it would otherwise inherit -- so styling h1 alone
-           leaves the wordmark's own spans on the sans stack. Caught by
-           rendering the page and looking at it, not by reading the CSS. */
-        /* ONLY the face is shared with the spans. Everything else below stays
-           on h1, or the flex layout and the clamp() size would be re-applied
-           to each child and the lockup's 0.615/0.344 scale steps would all
-           collapse to full size. */
-        h1, h1 span {
-            /* "Bitstream Charter" comes BEFORE the bare `Charter`, and the
-               order is load-bearing. On Linux, fontconfig answers `Charter`
-               with a best-match SUBSTITUTE rather than failing -- measured
-               here, `fc-match Charter` returns DejaVu Sans -- so the browser
-               stops at that entry and every serif after it is unreachable.
-               The wordmark then silently renders in a sans for any reader
-               whose webfont request failed. Naming the real Linux family
-               first fixes it, and costs nothing on macOS, where "Bitstream
-               Charter" does not exist and the bare `Charter` is picked up on
-               the next line as before. */
-            font-family: "Source Serif 4", "Bitstream Charter", Charter,
-                         Georgia, "Times New Roman", serif;
-        }
-
-        h1 {
-            font-weight: 600;
-            font-size: clamp(1.75rem, 7.6vw, 3.05rem);
-            line-height: 1;
-            letter-spacing: normal;
-            margin-bottom: 0.9rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.292em;                       /* 28/96 */
-            text-transform: uppercase;
-            color: var(--brand-ink);
-        }
-
-        .sr-only {
-            position: absolute; width: 1px; height: 1px;
-            padding: 0; margin: -1px; overflow: hidden;
-            clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-        }
-
-        .lockup-name {
-            display: flex; align-items: baseline;
-            letter-spacing: 0.14em;
-            /* Tracking adds a space after the final N too. Left uncorrected it
-               pushes a centred line half a letter-space off centre. */
-            margin-right: -0.14em;
-        }
-
-        .lockup-mark {
-            display: block;
-            width: 0.656em;                     /* 63/96 */
-            height: 0.677em;                    /* 65/96 */
-            margin-right: 0.156em;              /* 15/96 */
-            flex: none;
-            /* NO align-self here. The viewBox is cropped to 0 13 38 39, so the
-               svg's bottom edge lands exactly on the uprights' feet -- which
-               means baseline alignment seats the mark on the text baseline for
-               free. Centring it instead floats the H off the line. */
-        }
-
-        .lockup-sub {
-            font-size: 0.615em;                 /* 59/96 */
-            letter-spacing: 0.2em;
-            margin-right: -0.2em;
-        }
-
-        .lockup-place {
-            display: flex; align-items: center;
-            font-size: 0.344em;                 /* 33/96 */
-            /* These two are measured against THIS row's 33px, not the 96px the
-               rest of the lockup is scaled from -- em compounds, and using the
-               /96 fractions here shrank the rule's gap to a third of the
-               drawing. */
-            gap: 0.667em;                       /* 22/33 */
-            margin-top: 0.121em;                /* 4/33 */
-            letter-spacing: 0.34em;
-            color: var(--brand-place);
-            /* The rule and the word are one unit; the tracking correction is
-               applied to the whole row so the pair stays centred together. */
-            margin-right: -0.34em;
-        }
-
-        .lockup-rule {
-            width: 2.24em;                      /* 74/33 of the DETROIT size */
-            height: 0.182em;                    /* 6/33 */
-            border-radius: 0.091em;
-            background: linear-gradient(90deg, var(--dawn-1), var(--dawn-2));
-            flex: none;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        p {
-            color: var(--muted);
-            line-height: 1.6;
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
-        }
-
-        .details-box {
-            background: var(--inset-bg);
-            border: 1px solid var(--line);
-            padding: 1rem;
-            border-radius: 8px;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 0.85rem;
-            color: var(--muted);
-            text-align: left;
-            margin-bottom: 1.5rem;
-        }
-
-        .details-box div + div { margin-top: 4px; }
-
-        .details-box span {
-            color: var(--accent);
-        }
-
-        footer {
-            font-size: 0.8rem;
-            color: var(--muted);
-            margin-top: 1rem;
-        }
-
-        /* One breakpoint, the CRM's own 720px. */
-        @media (max-width: 720px) {
-            .container { padding: 1.75rem 1.25rem; }
-            /* h1 is deliberately NOT overridden here -- its clamp() already
-               tracks the viewport, and a fixed size at this breakpoint would
-               fight it and break the lockup's proportions. */
-            .subtitle { font-size: 1rem; }
-            .details-box { font-size: 0.8rem; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .pulse-dot { animation: none; opacity: 1; }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0052cc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14171c" media="(prefers-color-scheme: dark)">
+<title>Horizon Defense Project | Juvenile-Focused Public Interest Defense</title>
+<meta name="description" content="Public interest criminal defense practice with a primary interest in juvenile capital cases and indigent adult defense across Metro Detroit.">
+<link rel="canonical" href="https://horizondefenseproject.com/">
+<link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Horizon Defense Project">
+<meta property="og:title" content="Horizon Defense Project">
+<meta property="og:description" content="Public interest criminal defense practice with a primary interest in juvenile capital cases and indigent adult defense across Metro Detroit.">
+<meta property="og:url" content="https://horizondefenseproject.com/">
+<meta property="og:image" content="https://horizondefenseproject.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Horizon Defense Project — Detroit">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Horizon Defense Project">
+<meta name="twitter:description" content="Public interest criminal defense practice with a primary interest in juvenile capital cases and indigent adult defense across Metro Detroit.">
+<meta name="twitter:image" content="https://horizondefenseproject.com/assets/og.png">
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+  :root {
+    --brand-ink: #172b4d; --brand-ink-700: #0d1a30; --brand-ink-100: #e9eff7;
+    --dawn-1: #c2410c; --dawn-2: #ea8c1b; --dawn-3: #f6c76a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --brand-ink: #e6e9ef; --brand-ink-700: #cdd9ea; --brand-ink-100: #212a38;
+      --dawn-1: #f97316; --dawn-2: #fbaa3c; --dawn-3: #ffd899;
+    }
+  }
+  body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent-700); }
+  a:hover { color: var(--color-accent-600); }
+  a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  @media (max-width: 720px) {
+    .split { grid-template-columns: 1fr !important; }
+    /* The nav is flex/space-between with a nowrap link group; on a 375px
+       phone that group runs 24px past the viewport. Let it drop to its
+       own row instead of widening the page. */
+    .nav { flex-wrap: wrap !important; row-gap: var(--space-3); }
+    .nav > div { flex-wrap: wrap; }
+    /* The email address is set nowrap inline and is wider than a 320px
+       content box; let it wrap rather than widen the page. */
+    a[href^="mailto:"] { white-space: normal !important; overflow-wrap: anywhere; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+</style>
 </head>
 <body>
+<div style="min-height: 100vh; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); display: flex; flex-direction: column">
 
-    <canvas id="canvas"></canvas>
+  <nav class="nav" style="background: transparent; border: none; padding: var(--space-4) var(--space-6); display: flex; align-items: center; justify-content: space-between; gap: var(--space-4)">
+    <a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--brand-ink)">
+      <svg viewBox="0 0 64 64" width="34" height="34" style="display: block; flex: none" aria-hidden="true">
+        <defs><clipPath id="hzN"><rect x="0" y="0" width="80" height="37"></rect></clipPath><radialGradient id="sunN" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="var(--dawn-1)" stop-opacity="0.95"></stop><stop offset="52%" stop-color="var(--dawn-2)" stop-opacity="0.6"></stop><stop offset="100%" stop-color="var(--dawn-3)" stop-opacity="0.14"></stop></radialGradient></defs><circle cx="45" cy="50" r="32" fill="url(#sunN)" clip-path="url(#hzN)"></circle><rect x="8" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect><rect x="34" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect><rect x="1" y="29" width="62" height="8" rx="4" fill="var(--dawn-1)"></rect>
+      </svg>
+      <span style="font-family: var(--font-body); font-weight: 700; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase">Horizon Defense Project</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: var(--space-2)">
+      <a class="btn btn-ghost" href="staff.html" style="text-decoration: none; white-space: nowrap">Staff</a>
+      <a class="btn btn-ghost" href="ai-use-policy.html" style="text-decoration: none; white-space: nowrap">AI use policy</a>
+      <a class="btn btn-ghost" href="#contact" style="text-decoration: none">Contact</a>
+    </div>
+  </nav>
 
-    <main class="container">
-        <div class="status-badge">
-            <div class="pulse-dot"></div>
-            System Initialization
-        </div>
+  <main id="top" style="flex: 1; display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-8) var(--space-6) var(--space-8); max-width: 1180px; width: 100%; margin: 0 auto; box-sizing: border-box">
 
-        <h1>
-            <span class="sr-only">Horizon Defense Project — Detroit</span>
-            <span class="lockup-name" aria-hidden="true">
-                <svg class="lockup-mark" viewBox="0 13 38 39" focusable="false">
-                    <defs>
-                        <clipPath id="hzn"><rect x="0" y="0" width="64" height="37"/></clipPath>
-                        <radialGradient id="sun" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%"   stop-color="var(--mark-sun-0)" stop-opacity=".95"/>
-                            <stop offset="52%"  stop-color="var(--mark-sun-1)" stop-opacity=".66"/>
-                            <stop offset="100%" stop-color="var(--mark-sun-2)" stop-opacity=".14"/>
-                        </radialGradient>
-                        <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%"  stop-color="var(--mark-bar-0)"/>
-                            <stop offset="42%" stop-color="var(--mark-bar-1)"/>
-                            <stop offset="72%" stop-color="var(--mark-bar-2)"/>
-                            <stop offset="92%" stop-color="var(--mark-bar-3)"/>
-                        </linearGradient>
-                    </defs>
-                    <circle cx="26" cy="45" r="27" fill="url(#sun)" clip-path="url(#hzn)"/>
-                    <rect x="4"  y="14" width="8"  height="38" rx="2" fill="var(--mark-upright)"/>
-                    <rect x="26" y="14" width="8"  height="38" rx="2" fill="var(--mark-upright)"/>
-                    <rect x="2"  y="29" width="34" height="8"  rx="4" fill="url(#bar)"/>
-                </svg><span>orizon</span>
-            </span>
-            <span class="lockup-sub" aria-hidden="true">Defense Project</span>
-            <span class="lockup-place" aria-hidden="true">
-                <span class="lockup-rule"></span>Detroit
-            </span>
+    <section class="split" style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: var(--space-8); align-items: center">
+      <div style="display: flex; flex-direction: column; gap: var(--space-4); align-items: flex-start">
+        <span class="tag" style="height: auto; white-space: nowrap; padding: 5px 14px; background: var(--brand-ink-100); color: var(--brand-ink-700); border: 1px solid var(--brand-ink)">Metro Detroit</span>
+
+        <h1 style="margin: 0; display: flex; flex-direction: column; gap: 0.30em; align-items: flex-start; font-family: 'Source Serif 4', 'Bitstream Charter', Charter, Georgia, 'Times New Roman', serif; font-weight: 600; font-size: clamp(2.1rem, 5.2vw, 3.5rem); line-height: 1; letter-spacing: normal; text-transform: uppercase; color: var(--brand-ink)">
+          <span class="sr-only">Horizon Defense Project — Detroit</span>
+          <span aria-hidden="true" style="display: flex; align-items: baseline; letter-spacing: 0.14em; margin-right: -0.14em; white-space: nowrap">
+            <svg viewBox="0 13 38 39" width="0.656em" height="0.677em" style="display: block; width: 0.656em; height: 0.677em; margin-right: 0.156em; flex: none" focusable="false">
+              <defs><clipPath id="hzH"><rect x="0" y="0" width="80" height="37"></rect></clipPath><radialGradient id="sunH" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="var(--dawn-1)" stop-opacity="0.95"></stop><stop offset="52%" stop-color="var(--dawn-2)" stop-opacity="0.6"></stop><stop offset="100%" stop-color="var(--dawn-3)" stop-opacity="0.14"></stop></radialGradient></defs><circle cx="26" cy="45" r="27" fill="url(#sunH)" clip-path="url(#hzH)"></circle><rect x="4" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect><rect x="26" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect><rect x="2" y="29" width="34" height="8" rx="4" fill="var(--dawn-1)"></rect>
+            </svg><span>orizon</span>
+          </span>
+          <span aria-hidden="true" style="font-size: 0.615em; letter-spacing: 0.2em; margin-right: -0.2em; white-space: nowrap">Defense Project</span>
+          <span aria-hidden="true" style="display: flex; align-items: center; font-size: 0.344em; gap: 0.667em; margin-top: 0.121em; letter-spacing: 0.34em; margin-right: -0.34em; color: var(--color-accent-700)">
+            <span style="width: 2.24em; height: 0.24em; border-radius: 999px; background: var(--dawn-1); flex: none"></span>Detroit
+          </span>
         </h1>
-        <div class="subtitle">Juvenile-Focused Public Interest Defense</div>
 
-        <p>
-            Public interest criminal defense practice with a primary interest in juvenile capital cases and indigent adult defense across Metro Detroit.
-        </p>
+        <p style="margin: 0; font-family: var(--font-heading); font-size: clamp(1.15rem, 2.2vw, 1.55rem); line-height: 1.25; color: var(--color-accent-700); max-width: 20ch">Juvenile-Focused Public Interest Defense</p>
 
-        <div class="details-box">
-            <div>&gt; Jurisdiction: 3rd &amp; 16th Judicial Circuits (MI)</div>
-            <div>&gt; Entity Type: Michigan Nonprofit Corporation</div>
-            <div>&gt; Tax Status: <span>501(c)(3) Public Charity [Pending]</span></div>
+        <p style="margin: 0; font-size: 1.05rem; line-height: 1.65; color: var(--color-neutral-700); max-width: 54ch; text-wrap: pretty">Public interest criminal defense practice with a primary interest in juvenile capital cases and indigent adult defense across Metro Detroit.</p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-2)">
+          <a class="btn btn-primary" href="staff.html" style="text-decoration: none; white-space: nowrap">Staff</a>
         </div>
+      </div>
 
-        <footer>
-            &copy; Horizon Defense Project. All rights reserved.
-        </footer>
-    </main>
+      <div aria-hidden="true" style="display: grid; place-items: center; padding: var(--space-6)">
+        <div style="width: 100%; max-width: 340px; aspect-ratio: 1; border-radius: 999px; background: var(--brand-ink-100); display: grid; place-items: center; box-shadow: var(--shadow-sm)">
+          <svg viewBox="0 0 64 64" width="62%" height="62%" style="display: block">
+            <defs><clipPath id="hzB"><rect x="0" y="0" width="80" height="37"></rect></clipPath><radialGradient id="sunB" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="var(--dawn-1)" stop-opacity="0.95"></stop><stop offset="52%" stop-color="var(--dawn-2)" stop-opacity="0.6"></stop><stop offset="100%" stop-color="var(--dawn-3)" stop-opacity="0.14"></stop></radialGradient></defs><circle cx="45" cy="50" r="32" fill="url(#sunB)" clip-path="url(#hzB)"></circle><rect x="8" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect><rect x="34" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect><rect x="1" y="29" width="62" height="8" rx="4" fill="var(--dawn-1)"></rect>
+          </svg>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        // Interactive Canvas Particle Net
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
+    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4)">
+      <div class="card elev-sm">
+        <div class="card-kicker">Jurisdiction</div>
+        <div class="card-title" style="color: var(--brand-ink)">3rd &amp; 16th Judicial Circuits</div>
+        <p class="card-body" style="margin: 0">Michigan</p>
+      </div>
+      <div class="card elev-sm">
+        <div class="card-kicker">Practice focus</div>
+        <div class="card-title" style="color: var(--brand-ink)">Juvenile capital cases</div>
+        <p class="card-body" style="margin: 0">And indigent adult defense</p>
+      </div>
+      <div class="card elev-sm">
+        <div class="card-kicker">Staff</div>
+        <div class="card-title" style="color: var(--brand-ink)">Eric Decker</div>
+        <p class="card-body" style="margin: 0"><a href="staff.html">Founding Counsel &amp; Executive Director</a></p>
+      </div>
+    </section>
 
-        let width, height;
-        let particles = [];
+    <section id="contact" class="card elev-md" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: var(--space-6); padding: var(--space-6)">
+      <div style="display: flex; flex-direction: column; gap: var(--space-3)">
+        <h2 style="margin: 0; font-family: var(--font-heading); font-size: clamp(1.7rem, 3.4vw, 2.4rem); line-height: 1.1; color: var(--brand-ink)">Get in touch</h2>
+        <p style="margin: 0; font-size: 1rem; line-height: 1.6; color: var(--color-neutral-700); max-width: 40ch">The practice takes inquiries by email and telephone.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: var(--space-4)">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand-ink)">Email</span>
+          <a href="mailto:eric@horizondefenseproject.org" style="font-size: 1rem; font-weight: 600; white-space: nowrap">eric@horizondefenseproject.org</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand-ink)">Telephone</span>
+          <a href="tel:+13133850396" style="font-size: 1.1rem; font-weight: 600">313-385-0396</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand-ink)">Office</span>
+          <address style="margin: 0; font-style: normal; font-size: 1.05rem; line-height: 1.6; color: var(--color-text)">4444 2nd Ave #3080<br>Detroit, MI 48201</address>
+        </div>
+      </div>
+    </section>
 
-        // The net is drawn in the CRM's --accent, read from the stylesheet
-        // rather than hardcoded, so it re-tints when the theme flips instead
-        // of stranding a light-mode blue on a dark page.
-        let accent = { r: 0, g: 82, b: 204 };
+  </main>
 
-        function readAccent() {
-            const raw = getComputedStyle(document.documentElement)
-                .getPropertyValue('--accent').trim();
-            const hex = raw.replace('#', '');
-            if (hex.length === 6) {
-                accent = {
-                    r: parseInt(hex.slice(0, 2), 16),
-                    g: parseInt(hex.slice(2, 4), 16),
-                    b: parseInt(hex.slice(4, 6), 16)
-                };
-            }
-        }
+  <footer style="padding: var(--space-6); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); font-size: 0.85rem; color: var(--color-neutral-600); max-width: 1180px; width: 100%; margin: 0 auto; box-sizing: border-box">
+    <span>© Horizon Defense Project. All rights reserved.</span>
+    <div style="display: flex; gap: var(--space-4); align-items: center; flex-wrap: wrap"><a href="ai-use-policy.html">AI use policy</a><a href="mailto:eric@horizondefenseproject.org">eric@horizondefenseproject.org</a></div>
+  </footer>
 
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-
-        window.addEventListener('resize', resize);
-        readAccent();
-        resize();
-
-        const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        if (darkQuery.addEventListener) {
-            darkQuery.addEventListener('change', readAccent);
-        }
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 1.5 + 1;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${accent.r}, ${accent.g}, ${accent.b}, 0.32)`;
-                ctx.fill();
-            }
-        }
-
-        for (let i = 0; i < 45; i++) {
-            particles.push(new Particle());
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 120) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(${accent.r}, ${accent.g}, ${accent.b}, ${0.18 * (1 - dist / 120)})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-    </script>
+</div>
 </body>
 </html>

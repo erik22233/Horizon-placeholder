@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0052cc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14171c" media="(prefers-color-scheme: dark)">
+<title>How This Office Uses Artificial Intelligence | Horizon Defense Project</title>
+<meta name="description" content="Administrative work, on our own machines, with a lawyer answerable for every word.">
+<link rel="canonical" href="https://horizondefenseproject.com/ai-use-policy.html">
+<link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Horizon Defense Project">
+<meta property="og:title" content="AI Use Policy — Horizon Defense Project">
+<meta property="og:description" content="Administrative work, on our own machines, with a lawyer answerable for every word.">
+<meta property="og:url" content="https://horizondefenseproject.com/ai-use-policy.html">
+<meta property="og:image" content="https://horizondefenseproject.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Horizon Defense Project — Detroit">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Use Policy — Horizon Defense Project">
+<meta name="twitter:description" content="Administrative work, on our own machines, with a lawyer answerable for every word.">
+<meta name="twitter:image" content="https://horizondefenseproject.com/assets/og.png">
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+  @media (max-width: 720px) {
+    /* Same nav guard as the other pages. */
+    .nav { flex-wrap: wrap !important; row-gap: var(--space-3); }
+    .nav > div { flex-wrap: wrap; }
+    /* The email address is set nowrap inline and is wider than a 320px
+       content box; let it wrap rather than widen the page. */
+    a[href^="mailto:"] { white-space: normal !important; overflow-wrap: anywhere; }
+  }
+  :root {
+    --brand-ink: #172b4d; --brand-ink-700: #0d1a30; --brand-ink-100: #e9eff7;
+    --dawn-1: #c2410c; --dawn-2: #ea8c1b; --dawn-3: #f6c76a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --brand-ink: #e6e9ef; --brand-ink-700: #cdd9ea; --brand-ink-100: #212a38;
+      --dawn-1: #f97316; --dawn-2: #fbaa3c; --dawn-3: #ffd899;
+    }
+  }
+  body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent-700); }
+  a:hover { color: var(--color-accent-600); }
+  a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div style="min-height: 100vh; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); display: flex; flex-direction: column">
+
+  <nav class="nav" style="background: transparent; border: none; padding: var(--space-4) var(--space-6); display: flex; align-items: center; justify-content: space-between; gap: var(--space-4)">
+    <a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--brand-ink)">
+      <svg viewBox="0 0 64 64" width="34" height="34" style="display: block; flex: none" aria-hidden="true">
+        <defs>
+          <clipPath id="hzP"><rect x="0" y="0" width="80" height="37"></rect></clipPath>
+          <radialGradient id="sunP" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="var(--dawn-1)" stop-opacity="0.95"></stop>
+            <stop offset="52%" stop-color="var(--dawn-2)" stop-opacity="0.6"></stop>
+            <stop offset="100%" stop-color="var(--dawn-3)" stop-opacity="0.14"></stop>
+          </radialGradient>
+        </defs>
+        <circle cx="45" cy="50" r="32" fill="url(#sunP)" clip-path="url(#hzP)"></circle>
+        <rect x="8" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect>
+        <rect x="34" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect>
+        <rect x="1" y="29" width="62" height="8" rx="4" fill="var(--dawn-1)"></rect>
+      </svg>
+      <span style="font-weight: 700; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase">Horizon Defense Project</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: var(--space-2)">
+      <a class="btn btn-ghost" href="staff.html" style="text-decoration: none; white-space: nowrap">Staff</a>
+      <a class="btn btn-ghost" href="index.html" style="text-decoration: none; white-space: nowrap">Back to home</a>
+    </div>
+  </nav>
+
+  <main style="flex: 1; width: 100%; max-width: 820px; margin: 0 auto; box-sizing: border-box; padding: var(--space-8) var(--space-6); display: flex; flex-direction: column; gap: var(--space-6)">
+
+    <header style="display: flex; flex-direction: column; gap: var(--space-4); align-items: flex-start">
+      <h1 style="margin: 0; font-family: var(--font-heading); font-size: clamp(2.1rem, 5.2vw, 3.3rem); line-height: 1.05; color: var(--brand-ink); max-width: 24ch">How This Office Uses Artificial Intelligence</h1>
+      <p style="margin: 0; font-family: 'Source Serif 4', Charter, Georgia, serif; font-size: 1rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-ink)"><strong style="font-weight: 600">Horizon Defense Project</strong></p>
+      <p style="margin: 0; font-size: 1.15rem; line-height: 1.5; color: var(--color-accent-700)"><em>Administrative work, on our own machines, with a lawyer answerable for every word.</em></p>
+      <p style="margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch; text-wrap: pretty">Software helps run this office. It does not defend you. Every legal judgment in your case — what to investigate, what to file, what to argue in front of a judge, and what to tell you about your own choices — is made by a licensed Michigan attorney who has read your file.</p>
+    </header>
+
+    <section style="display: flex; flex-direction: column; gap: var(--space-3)">
+      <h2 style="margin: 0; font-family: var(--font-heading); font-size: clamp(1.5rem, 3.2vw, 2rem); line-height: 1.15; color: var(--brand-ink)">What the software actually does</h2>
+      <p style="margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch; text-wrap: pretty">Criminal defense buries a lawyer in paper. A single case can arrive as thousands of pages of reports, dozens of hours of body-camera footage, and a phone extraction holding tens of thousands of messages. We use automated tools, some of them built on artificial intelligence, to keep that pile in order:</p>
+      <ul style="margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: var(--space-2); font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch">
+        <li>Turning recorded interviews and video into searchable text, so a sentence said on hour nine of body-camera footage can be found in seconds instead of never.</li>
+        <li>Reading scanned reports that arrive as images, so the pages can be searched rather than thumbed through.</li>
+        <li>Sorting and indexing discovery as it comes in, so nothing gets lost between the prosecutor's office and the courtroom.</li>
+        <li>Tracking court dates and deadlines, and putting the reminder in front of your lawyer before the date, not after it.</li>
+        <li>Assembling the file into a summary your attorney reads before walking into court — a starting point for their own review of the record, never a substitute for it.</li>
+      </ul>
+      <p style="margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch">None of that is the practice of law. It is filing.</p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: var(--space-3)">
+      <h2 style="margin: 0; font-family: var(--font-heading); font-size: clamp(1.5rem, 3.2vw, 2rem); line-height: 1.15; color: var(--brand-ink)">What it does not do</h2>
+      <p style="margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch; text-wrap: pretty">No artificial intelligence decides anything in your case. It does not weigh whether a witness is telling the truth, whether you should take a plea, what happened that night, or what your defense is going to be. Those are judgment calls under pressure, and judgment is the thing you hired a lawyer for.</p>
+      <p style="margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch; text-wrap: pretty">Nothing you receive from this office is written by a machine and sent to you unread. Not a letter, not an answer to a question, not advice. When your attorney tells you something about your case, your attorney is telling you, and stands behind it.</p>
+      <p style="margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch; text-wrap: pretty">Where these tools are used to prepare a draft — an outline, a list of questions, a first pass at a document — that draft is work product, and it is treated as raw material. Your attorney reads it against the record, rewrites it, and adopts it, or throws it out. <strong>Nothing goes to a court, an opposing attorney, or a client until a lawyer has checked it line by line and made it their own.</strong></p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: var(--space-3)">
+      <h2 style="margin: 0; font-family: var(--font-heading); font-size: clamp(1.5rem, 3.2vw, 2rem); line-height: 1.15; color: var(--brand-ink)">Every citation gets checked against the actual case</h2>
+      <p style="margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch; text-wrap: pretty">Language models invent things. They produce case names that sound right, in a citation format that looks right, for decisions that were never written. Lawyers around the country have filed those fabrications and been sanctioned for it in open court.</p>
+      <p style="margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch; text-wrap: pretty">This office verifies every case citation against the reported decision itself before anything is filed, and every quotation against the page of the record it came from. We hold facts to the same standard. If the file does not establish something, the document says the file does not establish it, and points to the page where the answer should have been. <strong>"Not in the record" and "did not happen" are different findings, and they never get collapsed into one.</strong></p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: var(--space-4)">
+      <h2 style="margin: 0; font-family: var(--font-heading); font-size: clamp(1.5rem, 3.2vw, 2rem); line-height: 1.15; color: var(--brand-ink)">Your file does not leave this office</h2>
+      <p style="margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch; text-wrap: pretty">The tools that organize your case run on computers this office owns, in this office, on a private network. Your discovery, your interviews, and everything you have told your lawyer are not uploaded to a commercial chatbot or to any outside artificial intelligence service. No outside company processes your file, stores it, or uses it to train a product.</p>
+      <blockquote class="card" style="margin: 0; padding: var(--space-6); background: var(--brand-ink-100); font-size: 1.05rem; line-height: 1.7; color: var(--brand-ink-700); max-width: 66ch; text-wrap: pretty">Michigan Rule of Professional Conduct 1.6 obligates a lawyer to protect what a client tells them in confidence. Pasting a client's discovery into a public AI service hands that material to a company that owes the client nothing. So we don't. The hardware sits in this office, and that is a deliberate expense rather than an accident of setup.</blockquote>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: var(--space-3)">
+      <h2 style="margin: 0; font-family: var(--font-heading); font-size: clamp(1.5rem, 3.2vw, 2rem); line-height: 1.15; color: var(--brand-ink)">Who is responsible</h2>
+      <p style="margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch; text-wrap: pretty">A machine cannot be admitted to the State Bar of Michigan, cannot be disciplined by it, and cannot be disbarred. That is the whole point. Every document this office files, every word it sends, and every piece of advice it gives is the professional responsibility of a licensed attorney. There is no version of this practice in which "the computer produced it" is an answer to a client, to an opposing attorney, or to a judge.</p>
+      <p style="margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch; text-wrap: pretty">If you are represented by this office and you want to know exactly how your file is handled, ask your attorney. You will get a straight answer, and you are entitled to one.</p>
+      <p style="margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--color-neutral-800); max-width: 66ch; text-wrap: pretty">These tools save hours every week, and those hours go back into the cases. But nothing in this office's software has ever stood beside a person at sentencing, and nothing in it ever will.</p>
+    </section>
+
+    <div style="display: flex; flex-direction: column; gap: 6px; padding-top: var(--space-6); border-top: 1px solid var(--color-neutral-300); font-size: 0.95rem; line-height: 1.6; color: var(--color-neutral-700)">
+      <span>Horizon Defense Project · Michigan Nonprofit Corporation</span>
+      <span>Policy effective September 1, 2026. Reviewed as the technology and the professional rules change.</span>
+      <em style="margin-top: var(--space-3); font-size: 1rem; line-height: 1.65; color: var(--color-neutral-700); max-width: 66ch; text-wrap: pretty">AI was, however, used to design this website, style this website, create a cartoon depiction of pets and to make Eric's headshot look much better than he does in real life.</em>
+    </div>
+
+  </main>
+
+  <footer style="padding: var(--space-6); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); font-size: 0.85rem; color: var(--color-neutral-600); max-width: 820px; width: 100%; margin: 0 auto; box-sizing: border-box">
+    <span>© Horizon Defense Project. All rights reserved.</span>
+    <a href="mailto:eric@horizondefenseproject.org">eric@horizondefenseproject.org</a>
+  </footer>
+
+</div>
+</body>
+</html>
