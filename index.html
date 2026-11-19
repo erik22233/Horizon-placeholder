@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0052cc" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#14171c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f2ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#143155" media="(prefers-color-scheme: dark)">
 <title>Horizon Defense Project | Indigent Adult Criminal Defense</title>
 <meta name="description" content="Public interest criminal defense practice with a primary focus on indigent adult defense, and an interest in juvenile cases, across Metro Detroit.">
 <link rel="canonical" href="https://horizondefenseproject.com/">
@@ -27,21 +27,27 @@
 <link rel="stylesheet" href="styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
 <style>
   :root {
-    --brand-ink: #172b4d; --brand-ink-700: #0d1a30; --brand-ink-100: #e9eff7;
-    --dawn-1: #c2410c; --dawn-2: #ea8c1b; --dawn-3: #f6c76a;
+    --brand-ink: #143155; --brand-ink-700: #0f2643; --brand-ink-100: #e8ebf0;
+    --link: #c2380a; --link-hover: #cc3a0a; --rule: #cc3a0a;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --brand-ink: #e6e9ef; --brand-ink-700: #cdd9ea; --brand-ink-100: #212a38;
-      --dawn-1: #f97316; --dawn-2: #fbaa3c; --dawn-3: #ffd899;
+      --brand-ink: #ece5d8; --brand-ink-700: #f7f3ea; --brand-ink-100: #22436c;
+      --link: #ff8a2a; --link-hover: #ff9a48; --rule: #ff7a14;
     }
   }
+  /* The logo files are fixed-colour SVGs: one per ground, swapped by scheme. */
+  .on-dark { display: none !important; }
+  @media (prefers-color-scheme: dark) {
+    .on-light { display: none !important; }
+    .on-dark { display: block !important; }
+  }
   body { margin: 0; background: var(--color-bg); }
-  a { color: var(--color-accent-700); }
-  a:hover { color: var(--color-accent-600); }
+  a { color: var(--link); }
+  a:hover { color: var(--link-hover); }
   a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
   @media (max-width: 720px) {
     .split { grid-template-columns: 1fr !important; }
@@ -62,10 +68,8 @@
 
   <nav class="nav" style="background: transparent; border: none; padding: var(--space-4) var(--space-6); display: flex; align-items: center; justify-content: space-between; gap: var(--space-4)">
     <a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--brand-ink)">
-      <svg viewBox="0 0 64 64" width="34" height="34" style="display: block; flex: none" aria-hidden="true">
-        <defs><clipPath id="hzN"><rect x="0" y="0" width="80" height="37"></rect></clipPath><radialGradient id="sunN" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="var(--dawn-1)" stop-opacity="0.95"></stop><stop offset="52%" stop-color="var(--dawn-2)" stop-opacity="0.6"></stop><stop offset="100%" stop-color="var(--dawn-3)" stop-opacity="0.14"></stop></radialGradient></defs><circle cx="45" cy="50" r="32" fill="url(#sunN)" clip-path="url(#hzN)"></circle><rect x="8" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect><rect x="34" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect><rect x="1" y="29" width="62" height="8" rx="4" fill="var(--dawn-1)"></rect>
-      </svg>
-      <span style="font-family: var(--font-body); font-weight: 700; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase">Horizon Defense Project</span>
+      <img class="on-light" src="assets/mark-light.svg" width="38" height="38" alt="" style="display: block; flex: none"><img class="on-dark" src="assets/mark-dark.svg" width="38" height="38" alt="" style="flex: none">
+      <span style="font-family: var(--font-heading); font-weight: 800; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase">Horizon Defense Project</span>
     </a>
     <div style="display: flex; align-items: center; gap: var(--space-2)">
       <a class="btn btn-ghost" href="staff.html" style="text-decoration: none; white-space: nowrap">Staff</a>
@@ -80,20 +84,13 @@
       <div style="display: flex; flex-direction: column; gap: var(--space-4); align-items: flex-start">
         <span class="tag" style="height: auto; white-space: nowrap; padding: 5px 14px; background: var(--brand-ink-100); color: var(--brand-ink-700); border: 1px solid var(--brand-ink)">Metro Detroit</span>
 
-        <h1 style="margin: 0; display: flex; flex-direction: column; gap: 0.30em; align-items: flex-start; font-family: 'Source Serif 4', 'Bitstream Charter', Charter, Georgia, 'Times New Roman', serif; font-weight: 600; font-size: clamp(2.1rem, 5.2vw, 3.5rem); line-height: 1; letter-spacing: normal; text-transform: uppercase; color: var(--brand-ink)">
+        <h1 style="margin: 0 0 0 -6.5%; width: min(100%, 560px)">
           <span class="sr-only">Horizon Defense Project — Detroit</span>
-          <span aria-hidden="true" style="display: flex; align-items: baseline; letter-spacing: 0.14em; margin-right: -0.14em; white-space: nowrap">
-            <svg viewBox="0 13 38 39" width="0.656em" height="0.677em" style="display: block; width: 0.656em; height: 0.677em; margin-right: 0.156em; flex: none" focusable="false">
-              <defs><clipPath id="hzH"><rect x="0" y="0" width="80" height="37"></rect></clipPath><radialGradient id="sunH" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="var(--dawn-1)" stop-opacity="0.95"></stop><stop offset="52%" stop-color="var(--dawn-2)" stop-opacity="0.6"></stop><stop offset="100%" stop-color="var(--dawn-3)" stop-opacity="0.14"></stop></radialGradient></defs><circle cx="26" cy="45" r="27" fill="url(#sunH)" clip-path="url(#hzH)"></circle><rect x="4" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect><rect x="26" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect><rect x="2" y="29" width="34" height="8" rx="4" fill="var(--dawn-1)"></rect>
-            </svg><span>orizon</span>
-          </span>
-          <span aria-hidden="true" style="font-size: 0.615em; letter-spacing: 0.2em; margin-right: -0.2em; white-space: nowrap">Defense Project</span>
-          <span aria-hidden="true" style="display: flex; align-items: center; font-size: 0.344em; gap: 0.667em; margin-top: 0.121em; letter-spacing: 0.34em; margin-right: -0.34em; color: var(--color-accent-700)">
-            <span style="width: 2.24em; height: 0.24em; border-radius: 999px; background: var(--dawn-1); flex: none"></span>Detroit
-          </span>
+          <img class="on-light" src="assets/wordmark-horizontal-light.svg" width="620" height="210" alt="" style="display: block; width: 100%; height: auto">
+          <img class="on-dark" src="assets/wordmark-horizontal-dark.svg" width="620" height="210" alt="" style="width: 100%; height: auto">
         </h1>
 
-        <p style="margin: 0; font-family: var(--font-heading); font-size: clamp(1.15rem, 2.2vw, 1.55rem); line-height: 1.25; color: var(--color-accent-700); max-width: 20ch">Indigent Adult Criminal Defense, With an Interest in Juvenile Cases</p>
+        <p style="margin: 0; font-family: var(--font-body); font-weight: 500; font-size: clamp(1.25rem, 2.4vw, 1.7rem); line-height: 1.25; color: var(--color-accent-700); max-width: 24ch">Indigent Adult Criminal Defense, With an Interest in Juvenile Cases</p>
 
         <p style="margin: 0; font-size: 1.05rem; line-height: 1.65; color: var(--color-neutral-700); max-width: 54ch; text-wrap: pretty">Public interest criminal defense practice with a primary focus on indigent adult defense, and an interest in juvenile cases, across Metro Detroit.</p>
 
@@ -104,9 +101,7 @@
 
       <div aria-hidden="true" style="display: grid; place-items: center; padding: var(--space-6)">
         <div style="width: 100%; max-width: 340px; aspect-ratio: 1; border-radius: 999px; background: var(--brand-ink-100); display: grid; place-items: center; box-shadow: var(--shadow-sm)">
-          <svg viewBox="0 0 64 64" width="62%" height="62%" style="display: block">
-            <defs><clipPath id="hzB"><rect x="0" y="0" width="80" height="37"></rect></clipPath><radialGradient id="sunB" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="var(--dawn-1)" stop-opacity="0.95"></stop><stop offset="52%" stop-color="var(--dawn-2)" stop-opacity="0.6"></stop><stop offset="100%" stop-color="var(--dawn-3)" stop-opacity="0.14"></stop></radialGradient></defs><circle cx="45" cy="50" r="32" fill="url(#sunB)" clip-path="url(#hzB)"></circle><rect x="8" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect><rect x="34" y="14" width="8" height="38" rx="3" fill="var(--brand-ink)"></rect><rect x="1" y="29" width="62" height="8" rx="4" fill="var(--dawn-1)"></rect>
-          </svg>
+          <img class="on-light" src="assets/mark-light.svg" width="64" height="64" alt="" style="display: block; width: 72%; height: auto"><img class="on-dark" src="assets/mark-dark.svg" width="64" height="64" alt="" style="width: 72%; height: auto">
         </div>
       </div>
     </section>

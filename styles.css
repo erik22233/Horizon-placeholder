@@ -1,49 +1,51 @@
 /* Organic — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md. */
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo:wght@400&family=Figtree:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@500&display=swap');
 
 :root {
-  --color-bg: #f4f5f7;
+  /* Logo package 1b+ (2026-11-18): navy H #143155, brick crossbar #cc3a0a,
+     DETROIT #c2380a, warm paper #f4f2ee. Accent = navy (buttons, focus);
+     accent-2 = brick (links, rules, the crossbar). */
+  --color-bg: #f4f2ee;
   --color-surface: #ffffff;
-  --color-text: #172b4d;
-  --color-accent: #0052cc;
-  --color-accent-2: #ea8c1b;
-  --color-divider: #dfe1e6;
+  --color-text: #143155;
+  --color-accent: #143155;
+  --color-accent-2: #cc3a0a;
+  --color-divider: #e2ddd3;
 
-  /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
-     same step of any role matches the others in visual value. */
-  --color-neutral-100: #f4f5f7;
-  --color-neutral-200: #ebecf0;
-  --color-neutral-300: #dfe1e6;
-  --color-neutral-400: #a5adba;
-  --color-neutral-500: #7a8699;
+  --color-neutral-100: #f4f2ee;
+  --color-neutral-200: #ebe7df;
+  --color-neutral-300: #e2ddd3;
+  --color-neutral-400: #a9b0bc;
+  --color-neutral-500: #7d8797;
   --color-neutral-600: #5e6c84;
-  --color-neutral-700: #42526e;
-  --color-neutral-800: #172b4d;
-  --color-neutral-900: #0d1a30;
+  --color-neutral-700: #43516a;
+  --color-neutral-800: #143155;
+  --color-neutral-900: #0b1d35;
 
-  --color-accent-100: #eff4fa;
-  --color-accent-200: #d7e3f4;
-  --color-accent-300: #a3c4f5;
-  --color-accent-400: #5297ff;
-  --color-accent-500: #0f70ff;
-  --color-accent-600: #0056d6;
-  --color-accent-700: #0042a3;
-  --color-accent-800: #002f75;
-  --color-accent-900: #001f4c;
+  --color-accent-100: #eef1f6;
+  --color-accent-200: #d6dde9;
+  --color-accent-300: #a7b5cc;
+  --color-accent-400: #5f7598;
+  --color-accent-500: #2e4b75;
+  --color-accent-600: #1d3c66;
+  --color-accent-700: #143155;
+  --color-accent-800: #0f2643;
+  --color-accent-900: #0b1d35;
 
-  --color-accent-2-100: #fdf3e2;
-  --color-accent-2-200: #fae3bd;
-  --color-accent-2-300: #f6c76a;
-  --color-accent-2-400: #f0a93a;
-  --color-accent-2-500: #ea8c1b;
-  --color-accent-2-600: #d1740f;
-  --color-accent-2-700: #c2410c;
-  --color-accent-2-800: #8f300a;
-  --color-accent-2-900: #5c1f06;
+  --color-accent-2-100: #fbede6;
+  --color-accent-2-200: #f6d3c2;
+  --color-accent-2-300: #eba788;
+  --color-accent-2-400: #de7547;
+  --color-accent-2-500: #cc3a0a;
+  --color-accent-2-600: #c2380a;
+  --color-accent-2-700: #a92f08;
+  --color-accent-2-800: #7f2306;
+  --color-accent-2-900: #521604;
 
-  --font-heading: "Caprasimo", system-ui, sans-serif;
-  --font-heading-weight: 400;
-  --font-body: "Figtree", system-ui, sans-serif;
+  --font-heading: "Archivo", system-ui, sans-serif;
+  --font-heading-weight: 800;
+  --font-body: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
   --space-1: 4.4px;
   --space-2: 8.8px;
@@ -79,10 +81,10 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-headi
    ══════════════════════════════════════════════════════════════════════ */
 
 *, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; }
+body { margin: 0; font-size: 17px; line-height: 1.55; font-weight: 400; }
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2);
+  line-height: 1.12; letter-spacing: 0.01em; margin: 0 0 var(--space-2);
 }
 h1 { font-size: 42px; }
 h2 { font-size: 32px; }
@@ -181,7 +183,7 @@ textarea.input { min-height: 90px; resize: vertical; }
   display: flex; flex-direction: column; gap: var(--space-2);
   padding: var(--space-3); border-radius: var(--radius-md); background: var(--color-surface);
 }
-.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+.card-kicker { font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-accent-2-600); }
 .card-title {
   font-family: var(--font-heading); font-weight: var(--font-heading-weight);
   font-size: 17px; line-height: 1.2;
@@ -255,48 +257,49 @@ textarea.input { min-height: 90px; resize: vertical; }
 .btn, .tag, .seg, .input { border-radius: 999px; }
 .input { padding-inline: 14px; }
 
-/* Dark mode. The CRM's own dark tokens (templates/base.html), mapped onto the
-   same names the light block uses, so the site and the case board stay one
-   palette. Ramps invert: the stops the pages read as text (600/700/800,
+/* Dark mode. The logo package's navy-background palette, mapped onto the
+   same names the light block uses. Ramps invert: the stops the pages read as text (600/700/800,
    neutral 700/800) go light, the stops they read as fills (100/200) go dark. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #14171c;
-    --color-surface: #1d2127;
-    --color-text: #e6e9ef;
-    --color-divider: #2d323b;
-    --color-neutral-100: #1d2127;
-    --color-neutral-200: #242932;
-    --color-neutral-300: #2d323b;
-    --color-neutral-400: #4a5260;
-    --color-neutral-500: #6b7484;
-    --color-neutral-600: #99a2b3;
-    --color-neutral-700: #b6bfcd;
-    --color-neutral-800: #dfe3ea;
-    --color-neutral-900: #f0f2f6;
-    --color-accent: #6ea8ff;
-    --color-accent-100: #16233a;
-    --color-accent-200: #1c2e4d;
-    --color-accent-300: #274168;
-    --color-accent-400: #3f6ba8;
-    --color-accent-500: #5590d6;
-    --color-accent-600: #8bbcff;
-    --color-accent-700: #a8ccff;
-    --color-accent-800: #cbdfff;
-    --color-accent-900: #e4eeff;
-    --color-accent-2: #fbaa3c;
-    --color-accent-2-100: #2a1e0d;
-    --color-accent-2-200: #3d2c12;
-    --color-accent-2-300: #5c421a;
-    --color-accent-2-400: #8a6425;
-    --color-accent-2-500: #b98634;
-    --color-accent-2-600: #f97316;
-    --color-accent-2-700: #fbaa3c;
-    --color-accent-2-800: #ffd899;
-    --color-accent-2-900: #ffe9c4;
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
-    --shadow-md: 0 3px 10px rgba(0, 0, 0, 0.55);
-    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.62);
+    /* The logo's navy-background colours: ground #143155, text #ece5d8,
+       crossbar orange #ff7a14, DETROIT #ff8a2a. */
+    --color-bg: #143155;
+    --color-surface: #1b3b63;
+    --color-text: #ece5d8;
+    --color-divider: #2c4a72;
+    --color-neutral-100: #1b3b63;
+    --color-neutral-200: #22436c;
+    --color-neutral-300: #2c4a72;
+    --color-neutral-400: #4d6688;
+    --color-neutral-500: #7487a3;
+    --color-neutral-600: #a9b4c4;
+    --color-neutral-700: #c9cdd2;
+    --color-neutral-800: #ece5d8;
+    --color-neutral-900: #f7f3ea;
+    --color-accent: #ece5d8;
+    --color-accent-100: #1b3b63;
+    --color-accent-200: #22436c;
+    --color-accent-300: #34557f;
+    --color-accent-400: #5a7398;
+    --color-accent-500: #a9b4c4;
+    --color-accent-600: #f7f3ea;
+    --color-accent-700: #ece5d8;
+    --color-accent-800: #ece5d8;
+    --color-accent-900: #f7f3ea;
+    --color-accent-2: #ff7a14;
+    --color-accent-2-100: #3a2a1c;
+    --color-accent-2-200: #55361c;
+    --color-accent-2-300: #8a4d1c;
+    --color-accent-2-400: #c4651a;
+    --color-accent-2-500: #ff7a14;
+    --color-accent-2-600: #ff8a2a;
+    --color-accent-2-700: #ff9a48;
+    --color-accent-2-800: #ffc28c;
+    --color-accent-2-900: #ffe2c6;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 3px 10px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
   }
   /* brightness(1.1) is a glare on a dark ground */
   .washed { filter: saturate(0.6) contrast(0.85) brightness(0.92) opacity(0.94); }
